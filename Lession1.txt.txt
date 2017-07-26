@@ -1,1 +1,20 @@
-Hello,github
+*** Settings ***
+Library           Selenium2Library
+
+*** Test Cases ***
+Robot test 1
+    [Tags]    Ready
+    Open Calculate
+    Input Text    name=valueC    12
+    Click Button    name=calculate
+    ${ValueN}    Get Value    //input[@name='valueN']
+    ${Value}    Evaluate    3.96
+    Should Be Equal As Numbers    ${ValueN}    ${Value}
+    Log    ${ValueN}
+    Close Browser
+    [Teardown]    Close Browser
+
+*** Keywords ***
+Open Calculate
+    Open Browser    http://www.calculator.com/temperature/
+    Maximize Browser Window
